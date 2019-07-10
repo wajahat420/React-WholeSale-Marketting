@@ -1,0 +1,30 @@
+{
+  "proxy": "http:\\localhost:5000",
+  "name": "react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client-install": "npm install --prefix ShoppingCart-React",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix ShoppingCart-React",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.14.0",
+    "concurrently": "^4.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.12",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "yelp-fusion": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}

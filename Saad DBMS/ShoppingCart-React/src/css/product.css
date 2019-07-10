@@ -1,0 +1,108 @@
+.product {
+	margin-right: 50px;
+    margin-bottom: 50px;
+}
+* {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+			box-sizing: border-box;
+  }
+  .itemimage {
+	height: 300px;
+	width: 300px;
+	margin: 30px;
+	overflow: hidden;
+	margin-left: 25px;
+	margin-bottom: -100px;	
+}
+ 
+  .vertpan img {
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease-in;
+	  -o-transition: all 1s ease;
+	 -ms-transition: all 1s ease;
+		 transition: all 1s ease;
+  }
+   
+  .vertpan img:hover {
+	opacity: 0.5;
+  }
+  .card-product {
+	  width: 350px;
+	  box-shadow: whitesmoke ;
+}
+.card-header {
+	font-family: 'Segoe UI';
+	color: aliceblue;
+	padding: 0px;
+	box-shadow: teal;
+
+}
+.prodname {
+	font-weight: 700;
+	margin-left: 30px;
+}
+.prodprice {
+	font-weight: 700;
+	margin-left: 150px;
+}
+.card-content {
+	font-weight: 600;
+}
+.inputtext {
+	background-color:#ffffff3b ;
+	color: rgb(255, 255, 255);
+	border: none;
+	border-radius: 3px;
+	padding: 10px;
+	width: 60%;
+	outline: 0;
+	margin: 10px;
+	margin-left: 40px;
+}
+.card-footer {
+	padding: 0px;
+	margin-bottom: 50px;
+}
+.product_stock {
+	font-weight: 600;
+	margin-left: 30px;
+	margin-top: 20px;
+}
+.cartbutton {
+    display: table;
+	color: rgba(10, 10, 10, 0.877);
+	padding: 10px;
+	border-radius: 3px;
+	background-color: #4791a0;
+	font-weight: 700;
+	margin-left: 90px;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+  /* The element to apply the animation to */
+
+/*.product__name {*/
+	/*font-size: 30px;*/
+	/*margin-bottom: 10px;	*/
+/*}*/
+
+/*.product__price {*/
+	/*color: #555;*/
+/*}*/
+
+/*.product__add-to-cart {*/
+	/*background: #1976D2;*/
+	/*padding: 15px 30px;*/
+	/*color: white;*/
+	/*border: none;*/
+	/*border-radius: 5px;*/
+	/*cursor: pointer;*/
+/*}*/

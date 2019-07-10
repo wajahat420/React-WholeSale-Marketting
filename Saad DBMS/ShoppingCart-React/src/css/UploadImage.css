@@ -1,0 +1,82 @@
+.upload-image{
+    width: 100%;
+    text-align: center;
+    margin: 90px auto;
+}
+.upload-image > *{
+    margin: 10px;
+}
+.upload-image > .file {
+    font-size: 1.5em;
+    color: white;
+    
+}
+.upload-image label{
+    margin-left: 50px;
+}
+.upload-image > input[type="file"]{
+    color: white;
+}
+.upload-image > input[type="file"],input[type="file"]::placeholder,input[type="text"]{
+    font-size: 1.2em;
+    padding: 10px;
+}
+
+.upload-image > input[type="button"]{
+    padding: 6px 10px;
+    font-size: 1.2em;
+}
+.upload-image > h1{
+    margin: 0px;
+    padding: 10px;
+    font-size: 1.9em;
+    font-weight: 800;
+    color:rgb(214, 191, 60);
+    background-color: blue;
+}
+
+
+.lds-ring {
+    text-align: center;
+    /* margin: auto; */
+    /* display: block; */
+    position: absolute;
+
+    /* line-height:  9px; */
+    top: 300px;
+    left: 570px;
+    /* right: auto; */
+    /* margin-right: 100px; */
+    /* right: 0px; */
+    /* width: 75px; */
+    /* height: 100px; */
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    margin: 6px;
+    border: 6px solid rgb(16, 56, 167);
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: rgb(66, 36, 175) transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
