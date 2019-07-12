@@ -92,6 +92,21 @@ router.use("/confirmBuying",(req,res) => {
     .catch(err => console.log("error in insertion",err))
 })
 
+router.use("/deleteItem",(req,res) => {
+
+    UploadImagesData.deleteOne({name : req.body.name})
+    .then(response=>{
+        if(response.n == 0){
+            console.log("item no delete response",res.n)
+            res.send(false)
+        }else{
+            res.send(true)
+        }
+        console.log("delete response",response.n)
+    })
+
+})
+
 router.post("/upload",(req,res)=> {
     console.log("in req")
     // base64

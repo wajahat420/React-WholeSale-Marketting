@@ -61,14 +61,20 @@ const productReducer = (state = {
                 userLogin: true,
                 userEmail : action.Email
             };
-            // console.log("state",state.userSignin)
+            break;
+        case 'LOGOUT':
+            state = {
+                ...state,
+                userLogin: false,
+            };
             break;
         case 'IMAGES_DATA':
             state = {
                 ...state,
                 ProductsDatabase : action.imagesArr
             };
-            console.log("state",action.imagesArr)
+
+            console.log("cartStore",state.ProductsDatabase)
             break;
     
         case 'REMOVE_PRODUCT_FROM_CART':

@@ -72,11 +72,7 @@ class Checking extends React.Component{
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
 
-    }
-};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -92,6 +88,6 @@ const mapDispatchToProps = (dispatch) => {
   
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Checking);
+export default connect(mapDispatchToProps)(Checking);
 
 // export default Checking

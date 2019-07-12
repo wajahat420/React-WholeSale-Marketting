@@ -81,10 +81,10 @@ class Upload extends React.Component {
          "vegetables" && category.toLowerCase() !== "grocery" ){
             sweetalert("Wrong Category","Please Enter a valid Category","warning")
         }
-        else if(parseInt(price) != price){
+        else if(parseInt(price).toString() !== price){
             sweetalert("Wrong Price","Please Enter a Number","warning")
         }
-        else if(parseInt(stock) != stock){
+        else if(parseInt(stock).toString() !== stock){
             sweetalert("Wrong Stock","Please Enter a Number","warning")
         }
         else{

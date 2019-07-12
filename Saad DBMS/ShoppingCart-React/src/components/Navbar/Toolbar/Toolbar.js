@@ -2,27 +2,105 @@ import React from 'react';
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import './Toolbar.css';
 import {NavLink} from 'react-router-dom';
+import {connect} from "react-redux";
+// import swal from "sweetalert"
+import swal from "bootstrap-sweetalert"
 
-const toolbar = props => (
-  <header className="toolbar">
+// const Logout = () => {
+//   swal({
+//     title: "Are you sure?",
+//     // text: "Your will not be able to recover this imaginary file!",
+//     type: "warning",
+//     showCancelButton: true,
+//     confirmButtonClass: "btn-danger",
+//     confirmButtonText: "Yes",
+//     closeOnConfirm: false
+//   },
+//   function(){
+//     swal("Successfully Logout", "", "success");
+//   });
+// }
+import Logout from "../../Logout"
+
+
+class Toolbar extends React.Component{
+  constructor(props){
+    super(props)
+
+  }
+
+  // validateLogin = () => {
+  //   console.log("inside validate")
+  //   if(this.props.userLogin){
+  //     swal({
+  //       title: "Are you sure?",
+  //       // text: "Your will not be able to recover this imaginary file!",
+  //       type: "warning",
+  //       showCancelButton: true,
+  //       confirmButtonClass: "btn-danger",
+  //       confirmButtonText: "Yes",
+  //       closeOnConfirm: false
+  //     },
+  //     function(){
+  //       console.log("hh")
+  //       swal("Successfully Logout", "", "success");
+  //       this.props.history.push('/')          // return(<Redirect to="/Logout/true"/>)
+  //       // <NavLink to="/Logout/true"> abcd </NavLink>
+        
+  //       this.props.history.push("/")
+  //     }.bind(this));
+  //   } else{
+  //     console.log("in else")
+  //     this.props.history.push("/Login")
+
+  //   }
+  // } 
+
+  render(){
+
+
+    const userLogin = this.props.userLogin
+    if(userLogin){
+      var loginLogoutString = "/Logout"
+    }else{
+      loginLogoutString = "/Login"
+    }
+
+    return(
+      <header className="toolbar">
     <nav className="toolbar__navigation">
         <div className="toolbar__toggle-button">
-            <DrawerToggleButton click={props.drawerClickHandler} />
+            <DrawerToggleButton click={this.props.drawerClickHandler} />
         </div>
         <div className="toolbar__logo"><NavLink to="/">E - Dealers</NavLink></div>
         <div className="spacer" />
         <div className="toolbar_navigation-items">
         <ul>
-          <li><NavLink to="/Home">Home</NavLink></li>
+          <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/Item">Items</NavLink></li>
-          <li><NavLink to="/">About Us</NavLink></li>
-          <li><NavLink to="/Login">Login / Signup ?</NavLink></li>
-          <li><NavLink to="/Upload">Upload Item</NavLink></li>
-
+          <li><NavLink to="/About">About Us</NavLink></li>
+          <li><NavLink to="/Upload"> Upload Item</NavLink></li>
+          <li>  <NavLink to={loginLogoutString} >{userLogin ? "Logout" : "Login / Signup?"}</NavLink></li>
+          {/* <NavLink to={loginLogoutString} ></NavLink> */}
+          {/* onClick={this.validateLogin} */}
         </ul>
       </div>
     </nav>
   </header>
-);
 
-export default toolbar;
+    )
+  }
+} 
+
+
+const mapStateToProps = (state) => {
+  return {
+    userLogin : state.userLogin
+  }
+};
+
+
+
+
+export default connect(mapStateToProps)(Toolbar);
+// export default toolbar;

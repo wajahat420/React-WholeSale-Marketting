@@ -2,6 +2,11 @@
 	margin-right: 50px;
     margin-bottom: 50px;
 }
+
+.updateBtn{
+	float: right;
+}
+
 * {
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;

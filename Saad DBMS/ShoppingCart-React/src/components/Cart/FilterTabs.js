@@ -1,18 +1,36 @@
 import React from 'react';
-import ProductDatabase from '../../store/ProductsDatabase';
+// import ProductDatabase from '../../store/ProductsDatabase';
 import {connect} from "react-redux";
 
 class FilterTabs extends React.Component{
-    constructor() {
-        super();
-        let categories = ProductDatabase.map(singleProduct => {
+    constructor  (props)  {
+        super(props);
+
+        let categories = this.props.ProductsDatabase.map(singleProduct => {
             return singleProduct.category;
         });
+        // console.log("category",categories)
         this.state = {
             categories: Array.from(new Set(categories))
         }
     }
+
+ 
+    componentDidUpdate = () => {
+        let categories = this.props.ProductsDatabase.map(singleProduct => {
+            return singleProduct.category;
+        });
+        // console.log("should",categories)
+        if(this.state.categories.length !== categories.length){
+            this.setState({categories : Array.from(new Set(categories))})
+        }
+        // console.log("did update",this.props.ProductsDatabase)
+    }
+    
     render() {
+
+        console.log("categories",this.state.categories)
+
         return (
             <div className="tabs">
                 <ul>
@@ -31,6 +49,7 @@ class FilterTabs extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
+        ProductsDatabase : state.ProductsDatabase ,
         activeCategory: state.categoryToFilter
     }
 };

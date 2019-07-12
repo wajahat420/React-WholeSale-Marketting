@@ -56,7 +56,7 @@ class App extends Component {
                         img : image.url
                     }
                     temp.push(completeImgObj)
-                    console.log("yessssssss")
+                    // console.log("yessssssss")
                 }
             })
         })

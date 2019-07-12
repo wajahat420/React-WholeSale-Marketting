@@ -61,6 +61,12 @@ class Product extends Component {
 				<div className="card-content">
 					<label> Quantity </label>
 					<input className="inputtext" onChange={this.handleChange} value={+this.state.quantity} type="number" />
+
+				{/* */}
+					<input onClick={this.props.deleteItem} className="deleteBtn" type="button" value="Delete"/>
+					<input onClick={this.props.updateItem} className="updateBtn" type="button" value="Update"/>
+				{/*  */}
+
 		{/*	<p> Price {this.props.price * this.state.quantity} /- </p> */}
 				</div>
 				<div className="card-footer">
