@@ -6,6 +6,7 @@ import axios from "axios"
 
 import '../../css/productGrid.css';
 import Product from './Product.js';
+import Update from "./update"
 
 // import history from "history"
 
@@ -14,6 +15,8 @@ import Product from './Product.js';
 class ProductGrid extends Component {
 	
 	state = {
+		updateDIV : false,
+		itemName : "",
 		redirect : ""
 	}
 
@@ -46,11 +49,16 @@ class ProductGrid extends Component {
         }.bind(this));
 		console.log("name",itemName)
 	}
-	updateItem = (itemName) => {
-		console.log("name",itemName)
-	}
+
 
 	render() {
+		
+		let update = null
+		if(this.state.updateDIV){
+			update = <Update name={this.state.itemName} 
+						// update={this.state.itemName}
+						cancle={() => this.setState({updateDIV : false})}/>
+		}
 		// this.state = ""		
 
 		// this.props.history.push('/') 
@@ -61,12 +69,13 @@ class ProductGrid extends Component {
 		return (
 			<div className="product-grid">
 				{this.state.redirect}
+				{update}
 				{ this.props.ProductsDatabase.map((product, key) => {
                		if (product.category === this.props.categoryToFilter || this.props.categoryToFilter === 'all') {
                         return (
 							<Product key={key} name={product.name} img={product.img} stock={product.stock} price={product.price}
 									category={product.category} deleteItem={() => this.deleteItem(product.name)}
-									updateItem ={() => this.updateItem(product.name)} /> )
+									updateItem ={() => this.setState({updateDIV : true,itemName : product.name})} /> )
                     }
 
 				})}

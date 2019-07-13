@@ -29,7 +29,7 @@ class FilterTabs extends React.Component{
     
     render() {
 
-        console.log("categories",this.state.categories)
+        // console.log("categories",this.state.categories)
 
         return (
             <div className="tabs">

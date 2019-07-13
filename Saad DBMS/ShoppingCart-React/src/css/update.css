@@ -1,0 +1,52 @@
+.update{
+    margin: auto;
+    text-align: center;
+    left: 400px;
+    top: 200px;
+    z-index: 4;
+    padding: 10px;
+    color: black;
+    background-color: #ffffff;
+    font-size: 1.1em;
+    width: 30%;
+    position : fixed;
+}
+.update h1{
+    padding-bottom: 15px;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+.update tr {
+    height: 60px;
+}
+.update input{
+    padding: 10px;
+}
+.update input[type="text"]{
+    /* text-align: right; */
+    width: 80%;
+}
+.update .stock,.price{
+    float: right;
+}
+.update td.label {
+    padding-top: 10px;
+    /* width: 150px; */
+    width: 120%;
+    font-size: 1.3em;
+}
+.update input[type="button"]{
+    padding: 4px;
+    font-size: 0.9em;
+}
+.update .cancleBtn {
+    float: left;
+}
+.update .updateBtn {
+    float: right;
+}
+.update .bottom {
+    margin: auto;
+    width: 60%;
+}

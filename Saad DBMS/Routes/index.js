@@ -92,6 +92,26 @@ router.use("/confirmBuying",(req,res) => {
     .catch(err => console.log("error in insertion",err))
 })
 
+router.use("/updateItem",(req,res)=> {
+    // res.send("working update")
+    // console.log("working update")
+    UploadImagesData.updateOne({name : req.body.name},{
+        stock : req.body.stock,
+        price : req.body.price
+    })
+    .then(response =>{
+        if(response.n === 1){
+            console.log("update success",response)
+            res.send(true)
+        }
+        else{
+            console.log("update failed",response)
+            res.send(false)
+        }
+    }) 
+    .catch(err => console.log("error in updation",err))
+})
+
 router.use("/deleteItem",(req,res) => {
 
     UploadImagesData.deleteOne({name : req.body.name})
@@ -147,7 +167,7 @@ router.get("/getImages",(req,res)=>{
         const arr = []
         UploadImagesData.find().cursor().eachAsync(async (model) => {
             arr.push(model)
-            console.log('images', model);
+            // console.log('images', model);
          })
          .then(response=> {
             res.json({
