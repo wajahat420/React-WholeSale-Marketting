@@ -17,7 +17,7 @@
 .upload-image > input[type="file"]{
     color: white;
 }
-.upload-image > input[type="file"],input[type="file"]::placeholder,input[type="text"]{
+.upload-image > input[type="file"],input[type="file"]::placeholder,.upload-image input[type="text"]{
     font-size: 1.2em;
     padding: 10px;
 }

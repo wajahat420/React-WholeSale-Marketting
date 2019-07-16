@@ -3,31 +3,9 @@ import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import './Toolbar.css';
 import {NavLink} from 'react-router-dom';
 import {connect} from "react-redux";
-// import swal from "sweetalert"
-import swal from "bootstrap-sweetalert"
-
-// const Logout = () => {
-//   swal({
-//     title: "Are you sure?",
-//     // text: "Your will not be able to recover this imaginary file!",
-//     type: "warning",
-//     showCancelButton: true,
-//     confirmButtonClass: "btn-danger",
-//     confirmButtonText: "Yes",
-//     closeOnConfirm: false
-//   },
-//   function(){
-//     swal("Successfully Logout", "", "success");
-//   });
-// }
-import Logout from "../../Logout"
-
 
 class Toolbar extends React.Component{
-  constructor(props){
-    super(props)
-
-  }
+  
 
   // validateLogin = () => {
   //   console.log("inside validate")
@@ -57,7 +35,7 @@ class Toolbar extends React.Component{
   // } 
 
   render(){
-
+    // console.log("Toolbar signupAs",this.props.signupAs)
 
     const userLogin = this.props.userLogin
     if(userLogin){
@@ -79,7 +57,7 @@ class Toolbar extends React.Component{
           <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/Item">Items</NavLink></li>
           <li><NavLink to="/About">About Us</NavLink></li>
-          <li><NavLink to="/Upload"> Upload Item</NavLink></li>
+          <li className={this.props.signupAs === "User" && "displayNone" }><NavLink to="/Upload"> Upload Item</NavLink></li>
           <li>  <NavLink to={loginLogoutString} >{userLogin ? "Logout" : "Login / Signup?"}</NavLink></li>
           {/* <NavLink to={loginLogoutString} ></NavLink> */}
           {/* onClick={this.validateLogin} */}
@@ -95,12 +73,20 @@ class Toolbar extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
+    signupAs : state.signupAs,
     userLogin : state.userLogin
   }
 };
 
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+      
+  }
+}
 
 
-export default connect(mapStateToProps)(Toolbar);
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Toolbar);
 // export default toolbar;

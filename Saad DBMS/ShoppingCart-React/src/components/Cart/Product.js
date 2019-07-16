@@ -63,8 +63,12 @@ class Product extends Component {
 					<input className="inputtext" onChange={this.handleChange} value={+this.state.quantity} type="number" />
 
 				{/* */}
-					<input onClick={this.props.deleteItem} className="deleteBtn" type="button" value="Delete"/>
-					<input onClick={this.props.updateItem} className="updateBtn" type="button" value="Update"/>
+					<input onClick={this.props.deleteItem}
+						className={this.props.signupAs !== "Admin" ? "displayNone" : "deleteBtn"}
+					 	type="button" value="Delete"/>
+					<input onClick={this.props.updateItem}
+						className={this.props.signupAs !== "Admin" ? "displayNone" : "updateBtn"}
+						type="button" value="Update"/>
 				{/*  */}
 
 		{/*	<p> Price {this.props.price * this.state.quantity} /- </p> */}
@@ -82,7 +86,9 @@ class Product extends Component {
 	}
 }
 const mapStateToProps = (state) => {
-    return {}
+    return {
+		signupAs : state.signupAs,
+	}
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -36,6 +36,7 @@ router.post("/register",(req,res)=>{
                 res.send(true)
 
                 let newUser = new User({
+                    signupAs : req.body.signupAs,
                     firstName : req.body.firstName,
                     lastName : req.body.lastName,
                     phone : req.body.phone,
@@ -53,18 +54,28 @@ router.post("/register",(req,res)=>{
 // User Login
   
 router.post("/login",(req,res) => {
+    var data = ""
     console.log("working login req")
     email  = req.body.email
     password = req.body.password
  
-    User.findOne({email : email})
+    User.findOne({email : email},function(err,result){
+        console.log("DB result",result)
+        data = result
+        
+        
+    })
         .then( user => {
             if(!user){
                 console.log("email address not found")
                 res.send(false)
             }
             if(password == user.password){
-                res.send(true)
+                console.log("data",data)
+                res.json({
+                    validity : true,
+                    data : data
+                })
                 console.log("successful Signin")
             }
             else{
@@ -74,6 +85,7 @@ router.post("/login",(req,res) => {
 
             }
         })
+        .catch(err => {console.log("error",err)})
 })
 
 // COnfirm Buying
@@ -143,6 +155,7 @@ router.post("/upload",(req,res)=> {
             adminEntry : req.body.adminEntry
         })
     })
+    // UploadImagesData.
     .then(response=> {
         newImgData.save()
         .then(response=> {

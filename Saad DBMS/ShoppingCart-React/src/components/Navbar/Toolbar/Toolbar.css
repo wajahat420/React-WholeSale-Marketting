@@ -6,7 +6,9 @@
   background: #4791a0;
   height: 56px;
 }
-
+.displayNone{
+  display: none;
+}
 .toolbar__navigation {
   display: flex;
   height: 100%;

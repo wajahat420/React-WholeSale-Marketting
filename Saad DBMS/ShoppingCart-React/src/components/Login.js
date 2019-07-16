@@ -45,12 +45,12 @@ class App extends Component {
                 password : this.state.password
             })
             .then(res => {
-                // console.log("res.data",res.data)
-                if(!res.data){
+                console.log("res.data",res.data.data)
+                if(!res.data.validity){
                     sweetAlert("Error!","Invalid Signin","warning")
                 }else{
                     console.log("success signin")
-                    this.props.userIsLogin(this.state.email)
+                    this.props.userIsLogin(res.data.data.email,res.data.data.signupAs)
                     this.props.history.push("/Item")
                 }
             } )
@@ -119,10 +119,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        userIsLogin : (email)  => {
+        userIsLogin : (email,signupAs)  => {
             dispatch({
                 type : "USER_LOGIN",
-                Email : email
+                Email : email,
+                signupAs
             }) 
         }
     }

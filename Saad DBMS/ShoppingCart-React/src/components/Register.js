@@ -16,6 +16,7 @@ class App extends Component {
             email: '',
             password: '',
             error: null,
+            signupAs : ""
             // users: [],
             // loading: false
         };
@@ -31,20 +32,21 @@ class App extends Component {
 
         console.log("signup btn")
 
-        const { firstName, lastName, phone, email, password } = this.state;
+        const { firstName, lastName, phone, email, password ,signupAs } = this.state;
 
-        if (!firstName.length || !lastName.length || !phone.length || !email.length || !password.length) {
+        if (!firstName.length || !lastName.length || !phone.length || !email.length || !password.length || !signupAs.length ) {
             this.setState({ error: "please fill out all the details", loading: false })
             return false;
         }else if(phone.length !== 11 ){
             this.setState({error : "Phone Number must be of 11 Numbers"})
             return false
-        } else if (password.length < 6) {
+        } else if (password.length < 6) { 
             this.setState({ error: "password should contain atleast 6 charecters", loading: false })
             return false;
         } else {
             console.log("sending data")
             const regesterData = {
+                signupAs : signupAs,
                 firstName: firstName,
                 lastName: lastName,
                 phone: phone,
@@ -65,13 +67,16 @@ class App extends Component {
         }
     };
 
+  
+
 
     render() {
+        console.log("signupAs",this.state.signupAs)
         const { firstName, lastName, phone, email, password, error } = this.state;
 
         return (
-                <div className="box">
-                     <h3 className="loginaccount">LET'S CREATE YOUR ACCOUNT :)</h3>
+                <div className="box-signup">
+                     <h3 className="loginaccount">LET'S CREATE YOUR ACCOUNT :</h3>
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <form onSubmit={this.handleSignUp}>
@@ -142,6 +147,19 @@ class App extends Component {
                                                 />
                                             </div>
                                             {error && <p className="text-center text-red text-danger mt-3 mb-2 ">{error}</p>}
+                                            <div className="inputtext radio">
+                                                <p>CREATE AS:</p>
+
+                                                <label  htmlFor="shopkeeper">Shopkeeper</label>
+                                                <input onClick={()=> this.setState({signupAs : "Shopkeeper"})}
+                                                 name="grp1" value="Shopkeeper"  id="shopkeeper"
+                                                 type="radio"/>
+
+                                                <label  htmlFor="user">User</label>
+                                                <input onClick={()=> this.setState({signupAs : "User"})}
+                                                 name="grp1" value="User" id="user"
+                                                 type="radio"/>
+                                            </div>
                                             <div className="">
                                                 <button  className="signinbtn">Sign Up</button>
                                             </div>

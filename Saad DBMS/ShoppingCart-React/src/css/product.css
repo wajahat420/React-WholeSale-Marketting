@@ -2,7 +2,9 @@
 	margin-right: 50px;
     margin-bottom: 50px;
 }
-
+.displayNone{
+	display: none;
+}
 .updateBtn{
 	float: right;
 }

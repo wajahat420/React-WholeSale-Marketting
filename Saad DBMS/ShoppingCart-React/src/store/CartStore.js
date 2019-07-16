@@ -21,13 +21,13 @@
 
 
 const productReducer = (state = {
-    arr : [],
     ProductsDatabase: [],
    categoryToFilter: 'all',
    cartProducts: [],
    isCartOpened: false,
    userLogin : false,
-   userEmail : ""
+   userEmail : "",
+   signupAs : ""
 }, action) => {
     switch (action.type) {
         case 'CONFIRM_ORDER':
@@ -53,14 +53,16 @@ const productReducer = (state = {
                 ...state,
                 cartProducts: [...state.cartProducts, action.productToAdd]
             };
-            console.log("state",state.cartProducts)
+            // console.log("state",state.cartProducts)
             break;
         case 'USER_LOGIN':
             state = {
                 ...state,
                 userLogin: true,
-                userEmail : action.Email
+                userEmail : action.Email,
+                signupAs : action.signupAs
             };
+            // console.log("signupAs",action.signupAs)
             break;
         case 'LOGOUT':
             state = {
@@ -74,7 +76,7 @@ const productReducer = (state = {
                 ProductsDatabase : action.imagesArr
             };
 
-            console.log("cartStore",state.ProductsDatabase)
+            // console.log("cartStore",state.ProductsDatabase)
             break;
     
         case 'REMOVE_PRODUCT_FROM_CART':
@@ -107,7 +109,8 @@ const productReducer = (state = {
             };
             break;
             default :
-                console.log("default case")
+                console.log("hello")
+            //    return state 
 
     }
     return state

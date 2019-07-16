@@ -90,8 +90,8 @@ const mapStateToProps = (state) => {
     }
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {}
-// };
+const mapDispatchToProps = (dispatch) => {
+    return {}
+};
 
-export default connect(mapStateToProps)(ProductGrid);
+export default connect(mapStateToProps,mapDispatchToProps)(ProductGrid);
