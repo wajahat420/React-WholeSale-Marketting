@@ -9,8 +9,6 @@ import TitleBar from './Cart/TitleBar.js';
 import {connect} from "react-redux";
 import axios from 'axios';
 
-// import Images from '../store/getimages';   
-
 class App extends Component {
     constructor() {
         super();
@@ -23,23 +21,7 @@ class App extends Component {
             products: []
         }
 
-        axios.get("/getImages")
-        .then(res=>{
 
-            console.log("images",res.data.images)
-            console.log("imagesData",res.data.imagesData)
-            const images = []
-            res.data.images.forEach((elem) => {
-                const obj = {
-                    public_id : elem.public_id,
-                    url : elem.url
-                }
-                images.push(obj)
-            })
-            this.setState({images : images,imagesData : res.data.imagesData })
-            this.gatheringDataWithImg()
-        })
-        .catch(err => console.log("error",err))
     }
 
     gatheringDataWithImg = () => {
@@ -53,17 +35,38 @@ class App extends Component {
                         price : imagedata.price,
                         stock : imagedata.stock,
                         category : imagedata.category,
-                        img : image.url
+                        img : image.url,
+                        id:image.public_id
                     }
                     temp.push(completeImgObj)
-                    // console.log("yessssssss")
                 }
             })
         })
         this.props.imagesData(temp)
 
     }
+    componentDidMount(){
+        axios.get("/getImages")
+        .then(res=>{
 
+            console.log("images",res.data.images)
+            console.log("images.Data",res.data.imagesData)
+            const images = []
+            res.data.images.forEach((elem) => {
+                // console.log("number",1)
+                const obj = {
+                    public_id : elem.public_id,
+                    url : elem.url
+                }
+                images.push(obj)
+            })
+            this.setState({images : images,imagesData : res.data.imagesData },()=>{
+                this.gatheringDataWithImg()
+            })
+            // console.log("kk")
+        })
+        .catch(err => console.log("error",err))
+    }
 
     sendToCart(newProduct) {
         this.setState({
@@ -87,28 +90,30 @@ class App extends Component {
         })
     }
       render() {
-        console.log("images",this.state.images,this.state.images.length) 
-
         return (
-
                 <div className="container">
-                    <TitleBar title="E - Dealers | Items"></TitleBar>
-                    <FilterTabs />
-                        <div className="app-container container">
-                            <div className="inner-container">
-                                    <ProductGrid filterProducts={this.state.productsToFilter} onAddToCart={this.sendToCart}/>
-                            </div>
-                 
+                            <TitleBar title="E - Dealers | Items"></TitleBar>
+                            <FilterTabs />
+                            <div className="app-container container">
+                                <div className="inner-container">
+                                <ProductGrid filterProducts={this.state.productsToFilter} onAddToCart={this.sendToCart}
+                                            ProductsDatabase={this.props.ProductsDatabase} categoryToFilter={this.props.categoryToFilter}/>
+                                </div>
+
                                 <Cart />
-                          </div>
+                            </div>
                 </div>
+                
         )
       }
     }
 
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        ProductsDatabase: state.ProductsDatabase,
+		categoryToFilter: state.categoryToFilter
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -125,4 +130,3 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
-// export default App;

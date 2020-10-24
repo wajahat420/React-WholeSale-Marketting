@@ -16,56 +16,14 @@ class Upload extends React.Component {
         loading : false
     }
 
-    encodeBase64(URL){
-        // String.prototype.compress("abcd")
-        let a = lzw_encode(URL)
-        this.setState({imageURL : a})
-        // console.log("length",a.length)
-        // localStorage.setItem("imageURL" , a)
-        // console.log("compressed",a)
-        // axios.post("/upload",{
-        //     imageURL : URL
-        // })
-        // .then(res => console.log("uploadImage req send",res))
-        // .catch(err => console.log("error in req",err))
-        function lzw_encode(s) {
-            var dict = {};
-            var data = (s + "").split("");
-            var out = [];
-            var currChar;
-            var phrase = data[0];
-            var code = 256;
-            for (let i=1; i<data.length; i++) {
-                currChar=data[i];
-                if (dict[phrase + currChar] != null) {
-                    phrase += currChar;
-                }
-                else {
-                    out.push(phrase.length > 1 ? dict[phrase] : phrase.charCodeAt(0));
-                    dict[phrase + currChar] = code;
-                    code++;
-                    phrase=currChar;
-                }
-            }
-            out.push(phrase.length > 1 ? dict[phrase] : phrase.charCodeAt(0));
-            for (let i=0; i<out.length; i++) {
-                out[i] = String.fromCharCode(out[i]);
-            }
-            // console.log("in lzw",s)
-            return out.join("");
-        }
-    }
 
     change = (event) => {
-        // console.log("change func")
         this.setState({[event.target.name] : event.target.value})
     }
 
     upload = () => {   
         var{imageURL,name,price,stock,category} = this.state
    
-        // console.log("stock",this.state.stock)
-
         if(category.toLowerCase() === "fruit"){
             category = "fruits"
         }
@@ -129,8 +87,6 @@ class Upload extends React.Component {
                 const dataURL = reader.result;
                 // const fileName = input.files[0].name
                 this.setState({imageURL : dataURL})
-                // console.log("dataURL",dataURL.length)
-                // this.encodeBase64(dataURL)
 
         }
         reader.onloadstart = () => {
@@ -144,13 +100,7 @@ class Upload extends React.Component {
     }
 
     render(){
-        // console.log("stock",this.state.stock)
-        // console.log("name",this.state.name)
-        // console.log("price",this.state.price)
-        // console.log("category",this.state.category)
-        // console.log("price",this.state.imageURL)
-
-        // console.log("URL",this.state.dataURL)
+       
         return(
             <div className=" upload-image">
                 <h1>INSERT DATA</h1>

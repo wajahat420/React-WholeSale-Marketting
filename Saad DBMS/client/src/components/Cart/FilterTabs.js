@@ -15,17 +15,7 @@ class FilterTabs extends React.Component{
         }
     }
 
- 
-    componentDidUpdate = () => {
-        let categories = this.props.ProductsDatabase.map(singleProduct => {
-            return singleProduct.category;
-        });
-        // console.log("should",categories)
-        if(this.state.categories.length !== categories.length){
-            this.setState({categories : Array.from(new Set(categories))})
-        }
-        // console.log("did update",this.props.ProductsDatabase)
-    }
+
     
     render() {
 
@@ -34,10 +24,9 @@ class FilterTabs extends React.Component{
         return (
             <div className="tabs">
                 <ul>
-
                     <li className={this.props.activeCategory === 'all' ? 'is-active' : ''}><a onClick={this.props.filterProductByCategory.bind(this, 'all')} href='#all'> All Items</a></li>
-                    {this.state.categories.map(singleCategory =>
-                        <li key={parseInt(Math.random() * 1000)} className={this.props.activeCategory === singleCategory ? 'is-active' : ''}>
+                    {this.state.categories.map((singleCategory,key) =>
+                        <li key={key} className={this.props.activeCategory === singleCategory ? 'is-active' : ''}>
                             <a onClick={this.props.filterProductByCategory.bind(this, singleCategory)} href={'#' + singleCategory}> {singleCategory} </a>
                         </li>
                     )}
