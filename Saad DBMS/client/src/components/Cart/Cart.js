@@ -47,6 +47,7 @@ class Cart extends Component {
 
 
     render() {
+        console.log("cartttt",this.props.cartProducts)
         return (
             <aside className={"cart menu " + (this.props.isCartOpened ? 'cart__is-open' : '')}>
                 <div className="cart__title-wrapper">
